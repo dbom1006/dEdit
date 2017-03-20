@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example dEdit</title>
+    <link href="dEdit.css" rel="stylesheet">
+</head>
+<body>
+	<input type="file" id="file_image">
+	<div>
+		<img id="image" src="" width="50%">
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+	<script src="dEdit.js"></script>
+	
+    <script type="text/javascript">
+
+       
+        $('#file_image').on('change', function (e) {
+            var img = e.target.files[0];
+            if(!img.type.match('image.*')){
+            alert("Whoops! That is not an image.");
+                return;
+            }
+            dEdit.open(img, true, function(res){
+                $("#image").attr("src",res);
+            });
+            $('#file_image').val('');
+        })
+    </script>
+</body>
+</html>
